@@ -324,7 +324,7 @@ class PaperManager:
             arxiv_id = self._clean_arxiv_id(arxiv_id)
         except ValueError as e:
             return {"error": str(e)}
-        api_url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
+        api_url = f"https://export.arxiv.org/api/query?id_list={arxiv_id}"
 
         try:
             response = requests.get(api_url, timeout=10)
@@ -338,11 +338,16 @@ class PaperManager:
             authors_matches = re.findall(r'<name>(.*?)</name>', content)
             summary_match = re.search(r'<summary>(.*?)</summary>', content, re.DOTALL)
 
+            # Sanitize all text extracted from the external API
+            raw_title = title_match.group(1).strip() if title_match else None
+            raw_authors = authors_matches[1:] if len(authors_matches) > 1 else []
+            raw_abstract = summary_match.group(1).strip() if summary_match else None
+
             return {
                 "arxiv_id": arxiv_id,
-                "title": title_match.group(1).strip() if title_match else None,
-                "authors": authors_matches[1:] if len(authors_matches) > 1 else [],  # Skip first (feed title)
-                "abstract": summary_match.group(1).strip() if summary_match else None,
+                "title": self._sanitize_text(raw_title) if raw_title else None,
+                "authors": [self._sanitize_text(a) for a in raw_authors],
+                "abstract": self._sanitize_text(raw_abstract) if raw_abstract else None,
                 "arxiv_url": f"https://arxiv.org/abs/{arxiv_id}",
                 "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}.pdf"
             }
@@ -418,6 +423,24 @@ class PaperManager:
             )
 
         return arxiv_id
+
+    @staticmethod
+    def _sanitize_text(text: str) -> str:
+        """Sanitize untrusted text for safe inclusion in Markdown/YAML output.
+
+        Normalizes whitespace, strips control characters, and neutralizes
+        markdown code-fence breakout and YAML document delimiters.
+        """
+        # Remove control characters (keep newlines and tabs)
+        text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', text)
+        # Normalize whitespace runs (collapse multiple spaces/tabs, preserve single newlines)
+        text = re.sub(r'[^\S\n]+', ' ', text)
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        # Neutralize markdown code fence breakout
+        text = text.replace('```', r'\`\`\`')
+        # Neutralize YAML document delimiters at line start
+        text = re.sub(r'^---', r'\\---', text, flags=re.MULTILINE)
+        return text.strip()
 
 
 def main():
